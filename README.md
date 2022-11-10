@@ -48,6 +48,6 @@ NB : **App navigation will be through an App assistant, like the way SIRI works.
 **OBJECTIVES**
 
 The general objective of the suggested system for visually impaired people using voice recognition and image processing system is to
-•	make blind people more independent and become aware of their surroundings easily
-•	Designing the compact size device that works on real time for visually impaired.
-•	Cost effective system for understanding scene that will help the visually imparted navigate. Or in their daily lives.
+- make blind people more independent and become aware of their surroundings easily
+- Designing the compact size device that works on real time for visually impaired.
+- Cost effective system for understanding scene that will help the visually imparted navigate. Or in their daily lives.
