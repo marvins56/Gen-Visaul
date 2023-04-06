@@ -1,0 +1,37 @@
+HRSP CONFIGURATION
+
+R1
+enable
+config t
+interface g0/1
+ip address 10.10.10.2 255.255.255.0
+no shutdown
+standby 1 ip 10.10.10.1
+
+show standby
+interface g0/1
+standby 1 priority 110
+copy run start
+reload
+
+
+R2
+enable
+config t
+interface g0/1
+ip address 10.10.10.3 255.255.255.0
+no shutdown
+standby 1 ip 10.10.10.1
+
+show standby 
+copy run start
+
+
+PCS
+
+Ping 10.10.10.1
+
+Ping 203.0.113.1
+
+Test HSRP
+ping 10.10.10.1 -n 1000

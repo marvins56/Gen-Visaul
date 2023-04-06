@@ -1,0 +1,103 @@
+
+MUKONO ROUTER
+--------------------------------
+enable
+configure terminal
+no ip domain look up
+hostname Router
+line console 0
+password marvin
+login
+exec-timeout 3 5
+logging synchronous
+exit
+line vty 0 15
+password marvins
+login
+exec-timeout 2  0
+logging synchronous
+exit
+enable secret class
+service password-encryption
+banner motd # UNAUTHORIZED USERS PROHIBITED, IF FOUND YOU'LL PROSECUTED #
+
+
+
+interface g0/0/1
+description link to switch
+ip add 192.168.100.1 255.255.255.224
+no shut
+exit
+ip dhcp pool Mukono
+network 172.16.10.0 255.255.255.252
+default-router 172.16.10.1
+dns-server 8.8.8.8
+end
+
+KAMPALA ROUTER
+
+enable
+configure terminal
+no ip domain look up
+hostname Kampala
+line console 0
+password cisco
+login
+exec-timeout 3 5
+logging synchronous
+exit
+line vty 0 15
+password cisco
+login
+exec-timeout 2  0
+logging synchronous
+exit
+enable secret class
+service password-encryption
+banner motd # UNAUTHORIZED USERS PROHIBITED, IF FOUND YOU'LL PROSECUTED #
+interface g0/0/1
+description link to Kampala-Router
+ip add 172.16.30.1 255.255.255.224
+no shut
+exit
+ip dhcp pool Kampala
+network 172.16.30.0 255.255.255.224
+default-router 172.168.30.1
+dns-server 8.8.8.8
+end
+
+
+ENTEBBE ROUTER
+
+enable
+configure terminal
+no ip domain look up
+hostname Entebbe
+line console 0
+password cisco
+login
+exec-timeout 3 5
+logging synchronous
+exit
+line vty 0 15
+password cisco
+login
+exec-timeout 2  0
+logging synchronous
+exit
+enable secret class
+service password-encryption
+banner motd # UNAUTHORIZED USERS PROHIBITED, IF FOUND YOU'LL PROSECUTED #
+interface se0/1/1
+description link to Entebbe-Router
+ip add 172.16.50.1 255.255.255.252
+clock rate 64000
+no shut
+exit
+ip dhcp pool Entebbe
+network 172.16.50.0 255.255.255.252
+default-router 172.16.50.1
+dns-server 8.8.8.8
+end
+
+

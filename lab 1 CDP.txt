@@ -1,0 +1,140 @@
+R1
+
+enable
+configure terminal
+no ip domain look up
+hostname R1
+line console 0
+password cisco
+login
+exec-timeout 3 5
+logging synchronous
+exit
+line vty 0 15
+password cisco
+login
+exec-timeout 2  0
+logging synchronous
+exit
+enable secret class
+service password-encryption
+banner motd # UNAUTHORIZED USERS PROHIBITED, IF FOUND YOU'LL PROSECUTED #
+
+en
+conf t
+hostname R1
+interface g0/0/0
+ip address 10.10.10.1 255.255.255.0
+
+description link to SW1
+exit
+
+en
+conf t
+no cdp run
+cdp run
+end
+show cdp neighbors
+
+
+
+
+
+router 2  R2
+
+
+enable
+configure terminal
+no ip domain look up
+hostname R2
+line console 0
+password cisco
+login
+exec-timeout 3 5
+logging synchronous
+exit
+line vty 0 15
+password cisco
+login
+exec-timeout 2  0
+logging synchronous
+exit
+enable secret class
+service password-encryption
+banner motd # UNAUTHORIZED USERS PROHIBITED, IF FOUND YOU'LL PROSECUTED #
+
+en
+conf t
+hostname R2
+interface g0/0/0
+ip address 10.10.10.2 255.255.255.0
+
+description link to SW1
+exit
+
+interface g0/0/0
+speed 100
+duplex full
+end
+en
+
+show ip interface brief
+
+
+
+switch 1 SW1
+en
+conf t
+hostname SW1
+interface vlan1
+ip address 10.10.10.10 255.255.255.0
+no shut
+ip default-gateway 10.10.10.2
+end
+ping 10.10.10.2
+
+en
+conf t
+interface fastEthernet 0/1
+description Link to R1
+exit
+
+interface fastEthernet 0/2
+description Link to R2
+end
+en
+show interface
+conf t
+interface fastEthernet 0/2
+speed 100
+duplex full
+exit
+
+show cdp neighbors
+en
+conf t
+interface fastEthernet 0/1
+no cdp enable
+end
+
+show ip interface brief
+en
+conf t
+no shutdown
+shutdown
+do show ip interface brief
+exit
+no shutdown
+end
+show interfaces fastEthernet 0/2
+
+conf t
+interface fastEthernet 0/2
+duplex half
+end
+show ip interface brief
+en
+conf t
+int f0/2
+duplex full
+speed 10
