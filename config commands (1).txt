@@ -1,0 +1,141 @@
+
+Commands (RIP Configuration)
+
+ROUTER R1
+
+en
+conf t
+router rip
+version 2
+no auto-summary
+network 10.0.0.0
+end
+show ip route
+show ip route
+
+
+
+ROUTER R2
+
+en
+conf t
+router rip
+version 2
+no auto-summary
+network 10.0.0.0
+end
+show ip route
+show ip route
+
+ROUTER R3
+
+en
+conf t
+router rip
+version 2
+no auto-summary
+network 10.0.0.0
+end
+show ip route
+show ip route
+
+ROUTER R4
+
+en
+conf t
+router rip
+version 2
+no auto-summary
+network 10.0.0.0
+end
+show ip route
+
+en
+conf t
+router rip
+passive-interface fastEthernet 1/1
+network 203.0.113.0
+
+exit
+ip route 0.0.0.0 0.0.0.0 203.0.113.2
+
+router rip
+default-information-originate
+
+
+
+ROUTER R5
+
+en
+conf t
+router rip
+version 2
+no auto-summary
+network 10.0.0.0
+end
+show ip route
+
+
+connectivity of PC1 TO PC3
+ON PC1 to PC3
+
+ping 10.1.2.10  (SUCCESSFULL)
+
+
+
+
+COMMANDS (EIGRP Configuration)
+
+ROUTER R1
+
+en
+conf t
+router eigrp 100
+network 10.0.0.0
+end
+show ip eigrp neighbors
+show ip route
+
+ROUTER R2
+en
+conf t
+router eigrp 100
+network 10.0.0.0
+end
+show ip eigrp neighbors
+show ip route
+
+ROUTER R3
+en
+conf t
+router eigrp 100
+network 10.0.0.0
+end
+show ip eigrp neighbors
+show ip route
+
+
+ROUTER R4
+en
+conf t
+router eigrp 100
+network 10.0.0.0
+end
+show ip eigrp neighbors
+show ip route
+
+
+ROUTER R5
+
+en
+conf t
+router eigrp 100
+network 10.0.0.0
+end
+show ip eigrp neighbors
+show ip route
+
+
+
+part 12
+yes we expect to see any routes from the other routing protocol in the routing tables

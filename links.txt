@@ -1,0 +1,9 @@
+https://medium.com/@jayantkamble10000/getting-started-with-computer-networking-ccna-lab-4-40baea8b9a28
+
+https://medium.com/@jayantkamble10000/getting-started-with-computer-networking-ccna-lab-5-be3de3e09641
+
+bootflash:/isr4300-universalk9.03.16.05.S.155-3.S5-ext.SPA.bin
+universalk9.16.06.04.SPA.bin
+
+https://www.slashroot.in/backup-and-restore-router-configuration-file-using-tftp-server-packet-tracer-cisco-ccna
+

@@ -1,0 +1,140 @@
+show vlan brief
+show interface gig0/1 switchport
+
+en
+conf t
+int g0/1
+switch mode trunk
+switch trunk encap dot1q 
+
+int g0/2
+switch trunk encap dot1q 
+switch mode trunk
+
+vtp domain Flackbox
+vtp mode server
+
+SW2
+vtp mode transparent
+
+SW3
+vtp mode client
+vtp domain Flackbox
+
+SW1
+vlan 10
+name Eng
+vlan 20
+name Sales
+vlan 199
+name Native
+
+SW2
+vlan 10
+name Eng
+vlan 20
+name Sales
+vlan 199
+name Native
+
+SW3
+sh vlan brief
+
+SW2
+int g0/1
+switch trunk native vlan 199
+int g0/2
+switch trunk native vlan 199
+
+
+SW3
+int g0/2
+switch trunk native vlan 199
+
+SW1
+int range f0/1 - 2
+switch mode access
+switch access vlan 10
+int f0/3
+switch mode access
+switch access vlan 20
+
+SW3
+int range f0/1 - 2
+switch mode access
+switch access vlan 20
+int f0/3
+switch mode access
+switch access vlan 10
+
+R1
+en
+conf t
+int f0/0
+ip add 10.10.10.1 255.255.255.0
+no shutdown
+
+SW2
+en
+conf t
+int f0/1
+switchport mode access
+switchport access vlan 10
+int f0/2
+switchport mode access
+switchport access vlan 20
+
+
+R1
+int f0/1
+ip add 10.10.20.1 255.255.255.0
+no shutdown
+
+
+int f0/1
+shutdown
+
+int f0/0
+no ip address
+no shutdown
+int f0/0.10
+
+encapsulation dot1Q 10
+ip add 10.10.10.1 255.255.255.0
+int f0/0.20
+encapsulation dot1Q 20
+ip add 10.10.20.1 255.255.255.0
+
+SW2
+int f0/1
+switch trunk encap dot1q 
+switchport mode trunk
+
+R1
+int f0/0
+shutdown
+
+
+SW2
+ip routing
+int vlan 10
+ip add 10.10.20.1 255.255.255.0
+int vlan 20
+ip add 10.10.20.1 255.255.255.0
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
