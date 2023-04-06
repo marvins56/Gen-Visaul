@@ -7,3 +7,7 @@ universalk9.16.06.04.SPA.bin
 
 https://www.slashroot.in/backup-and-restore-router-configuration-file-using-tftp-server-packet-tracer-cisco-ccna
 
+
+
+https://www.flackbox.com/ccna-project-files
+
