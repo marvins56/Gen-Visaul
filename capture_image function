@@ -1,0 +1,26 @@
+def capture_image():
+    # speak("wait for 10 seconds and press any button to capture image")
+    # speak("press button to capture image after 10 seconds ")
+    # Initialize camera
+    cap = cv2.VideoCapture(0)
+
+    # Wait for user to press a key to take image
+    while True:
+        ret, frame = cap.read()
+        cv2.imshow('Press Space to Capture Image', frame)
+        if cv2.waitKey(1) & 0xFF == ord(' '):
+            # Get current date and time
+            now = datetime.now()
+            filename = now.strftime("%Y-%m-%d_%H-%M-%S")
+            # Create directory if it does not exist
+            directory = './images/'
+            if not os.path.exists(directory):
+                os.makedirs(directory)
+            # Save image
+            filepath = os.path.join(directory, f"{filename}.png")
+            cv2.imwrite(filepath, frame)
+            # Release camera and close window
+            cap.release()
+            cv2.destroyAllWindows()
+            speak("image captured successfully")
+            return filepath   
